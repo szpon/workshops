@@ -9,9 +9,14 @@
     = product.title
 
 %p
-  %h3 New product
-  = render 'products/form'
+  =# link_to category_products_path
 
-= link_to 'Edit', edit_category_path(category)
-\|
+- if current_user && current_user.admin?
+  %p
+    %h3 New product
+    = render 'products/form'
+
+  = link_to 'Edit', edit_category_path(category)
+  \|
+  
 = link_to 'Back', categories_path, class: 'btn btn-primary'

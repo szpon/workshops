@@ -5,10 +5,9 @@
       %ul
         - review.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label :content
-    = f.text_area :content, class: 'form-control'
-  .form-group
-    = f.input :rating, collection: 1..5, class: 'form-control'
+  .form-inputs
+    = f.input :content
+    = f.input :rating, collection: 1..5
 
-  = f.submit 'Save', class: 'btn btn-default'
+  .form-actions
+    = f.button :submit, 'Save'

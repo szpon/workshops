@@ -5,10 +5,10 @@
     %thead
       %tr
         %th Name
-        %th.col-md-2
+        %th.col-md-1
         - if current_user && current_user.admin?
-          %th.col-md-2
-          %th.col-md-2
+          %th.col-md-1
+          %th.col-md-1
     %tbody
       - categories.each do |category|
         %tr

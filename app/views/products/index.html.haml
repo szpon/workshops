@@ -1,21 +1,26 @@
-%h1 Listing products
+.col-md-8.col-md-offset-2
+  %h1 Listing products
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Price
+        %th.col-md-1
+        - if current_user && current_user.admin?
+          %th.col-md-1
+          %th.col-md-1
 
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      %td= link_to 'Edit', edit_category_product_path(product.category, product)
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+    %tbody
+      - products.each do |product|
+        %tr
+          %td= product.title
+          %td= product.description
+          %td= product.price
+          %td= link_to 'Show', category_product_path(product.category, product)
+          - if current_user && current_user.admin?
+            %td= link_to 'Edit', edit_category_product_path(product.category, product)
+            %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
+  %br

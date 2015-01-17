@@ -30,12 +30,12 @@
             
     .container-fluid
       .row
-        .col-lg-12
+        .col-sm-12
           -if notice
             .alert.alert-info#notice
               = notice
           -if flash[:error]
             .alert.alert-danger#error
-              = error
+              = flash[:error]
 
           = yield

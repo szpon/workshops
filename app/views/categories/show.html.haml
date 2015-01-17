@@ -1,20 +1,36 @@
-%p
-  %b Name:
-  = category.name
+.col-sm-8.col-sm-offset-2
+  .page-header.clearfix
+    .pull-left
+      %h2= category.name
+    .pull-right
+      .btn-group
+        - if current_user && current_user.admin?
+          = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary'
+        = link_to 'Back', categories_path, class: 'btn btn-primary'
 
-%p
-  - category.products.each do |product|
-    = product.title
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Products
 
-%p
-  =# link_to category_products_path
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Actions
+      %tbody
+        - category.products.each do |product|
+          %tr
+            %td= product.title
+            %td
+              .btn-group
+                = link_to 'Show', category_product_path(category, product), class: "btn btn-success"
+                - if current_user && current_user.admin?
+                  = link_to 'Edit', edit_category_product_path(category, product), class: "btn btn-primary"
+                  = link_to 'Destroy', category_product_path(category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
-- if current_user && current_user.admin?
-  %p
-    %h3 New product
-    = render 'products/form'
-
-  = link_to 'Edit', edit_category_path(category)
-  \|
-  
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  - if current_user && current_user.admin?
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title New product
+      .panel-body
+        = render 'products/form'

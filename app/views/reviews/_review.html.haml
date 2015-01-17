@@ -1,4 +1,8 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+%li.list-group-item
+  .media
+    .media-body
+      %h4.media-heading
+        Rating: #{review.rating}
+      %em
+        "#{review.content}"
+      \- #{review.author}, #{review.created_at.strftime("%d-%m-%Y")}

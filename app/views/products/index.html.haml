@@ -1,4 +1,4 @@
-.col-md-8.col-md-offset-2
+.col-sm-8.col-sm-offset-2
   %h1 Listing products
 
   %table.table.table-striped
@@ -7,10 +7,10 @@
         %th Title
         %th Description
         %th Price
-        %th.col-md-1
+        %th.col-sm-1
         - if current_user && current_user.admin?
-          %th.col-md-1
-          %th.col-md-1
+          %th.col-sm-1
+          %th.col-sm-1
 
     %tbody
       - products.each do |product|

@@ -1,6 +1,9 @@
-.col-md-4.col-md-offset-3
-  %h2
-    Edit #{resource_name.to_s.humanize}
+.col-sm-6.col-sm-offset-3
+  .page-header.clearfix
+    .pull-left
+      %h2 Edit #{resource_name.to_s.humanize}
+    .pull-right
+      = link_to "Back", :back, class: "btn btn-primary"
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     = f.error_notification
     .form-inputs
@@ -18,4 +21,3 @@
   %h3 Cancel my account
   %p
     Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-  = link_to "Back", :back

@@ -1,7 +1,10 @@
-%h1 Editing product
+.col-sm-8.col-sm-offset-2
+  .page-header.clearfix
+    .pull-left
+      %h2 Editing product
+    .pull-right
+      .btn-group
+        = link_to 'Show', category_product_path(category, product), class: 'btn btn-primary'
+        = link_to 'Back', category_path(category), class: 'btn btn-primary'
 
-= render 'form'
-
-= link_to 'Show', category_product_path(category, product)
-\|
-= link_to 'Back', category_path(category)
+  = render 'form'

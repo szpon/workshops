@@ -1,7 +1,10 @@
-%h1 Editing category
+.col-sm-8.col-sm-offset-2
+  .page-header.clearfix
+    .pull-left
+      %h2 Editing category
+    .pull-right
+      .btn-group
+        = link_to 'Show', category, class: 'btn btn-primary'
+        = link_to 'Back', categories_path, class: 'btn btn-primary'
 
-= render 'form'
-
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  = render 'form'

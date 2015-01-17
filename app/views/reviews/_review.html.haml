@@ -5,4 +5,7 @@
         Rating: #{review.rating}
       %em
         "#{review.content}"
-      \- #{review.author}, #{review.created_at.strftime("%d-%m-%Y")}
+      \-
+      = succeed ',' do
+        = link_to review.author, user_path(review.user)
+      #{review.created_at.strftime("%d-%m-%Y")}

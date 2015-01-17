@@ -17,7 +17,7 @@
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li
-              %a
+              = link_to user_path(current_user.id) do
                 Logged in as
                 %strong
                   = current_user.firstname

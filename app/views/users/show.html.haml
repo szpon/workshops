@@ -1,0 +1,36 @@
+.col-sm-8.col-sm-offset-2
+  .page-header.clearfix
+    .pull-left
+      %h2
+        -if user.admin?
+          %span.glyphicon.glyphicon-star
+        #{user.firstname} #{user.lastname}
+    .pull-right
+      .btn-group
+
+  %p
+    Email:
+    =user.email
+  %p
+    Member since:
+    =user.created_at.strftime("%d-%m-%Y")
+  %p
+    Total user's reviews:
+    =user.reviews.count
+
+  - if user.reviews.any?
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Last user's reviews
+
+      %ul.list-group
+        - user.reviews.limit(5).order(:created_at).each do |review|
+          %li.list-group-item
+            .media
+              .media-body
+                %h4.media-heading
+                  #{review.product.title}
+                  Rating: #{review.rating}
+                %em
+                  "#{review.content}"
+                \-  #{review.created_at.strftime("%d-%m-%Y")}

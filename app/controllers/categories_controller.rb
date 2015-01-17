@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  
+  before_action :authenticate_user!, except: [:index]
+  before_filter :user_admin?, except: [:index, :show]
+
   expose(:categories)
   expose(:category)
   expose(:product) { Product.new }
@@ -12,41 +13,27 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    if !current_user.admin?
-      redirect_to new_user_session_path
-    end
   end
 
   def edit
-    if !current_user.admin?
-      redirect_to new_user_session_path
-    end
   end
 
   def create
     self.category = Category.new(category_params)
 
-    if !current_user.admin?
-      redirect_to new_user_session_path
+    if category.save
+      redirect_to category, notice: 'Category was successfully created.'
     else
-      if category.save
-        redirect_to category, notice: 'Category was successfully created.'
-      else
-        render action: 'new'
-      end
+      render action: 'new'
     end
   end
 
   def update
-    if !current_user.admin?
-      redirect_to new_user_session_path
+    if category.update(category_params)
+      redirect_to category, notice: 'Category was successfully updated.'
     else
-      if category.update(category_params)
-        redirect_to category, notice: 'Category was successfully updated.'
-      else
-        render action: 'edit'
-      end
-    end 
+      render action: 'edit'
+    end
   end
 
   def destroy
@@ -57,5 +44,9 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(:name)
+    end
+
+    def user_admin?
+      redirect_to new_user_session_path unless current_user.admin?
     end
 end

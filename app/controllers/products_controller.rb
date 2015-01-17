@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_filter :product_owner?, only: [:edit, :update, :destroy]
 
   expose(:category)
-  expose(:products)
+  expose(:products) { Product.where(category_id: params[:category_id]) }
   expose(:product)
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)

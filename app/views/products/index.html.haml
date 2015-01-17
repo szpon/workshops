@@ -2,24 +2,27 @@
   .page-header
     %h2 Listing products
 
-  %table.table.table-striped
-    %thead
-      %tr
-        %th Title
-        %th Description
-        %th Price
-        %th.col-sm-1
-        - if current_user && current_user.admin?
-          %th.col-sm-1
-          %th.col-sm-1
-
-    %tbody
-      - products.each do |product|
-        %tr
-          %td= product.title
-          %td= product.description
-          %td= product.price
-          %td= link_to 'Show', category_product_path(product.category, product)
-          - if current_user && current_user.admin?
-            %td= link_to 'Edit', edit_category_product_path(product.category, product)
-            %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+  .panel.panel-default
+    - if products.any?
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Title
+            %th Description
+            %th Price
+            %th.text-right Actions
+        %tbody
+          - products.each do |product|
+            %tr
+              %td= product.title
+              %td= product.description
+              %td= product.price
+              %td.text-right
+                .btn-group
+                  = link_to 'Show', category_product_path(product.category, product), class: "btn btn-success"
+                  - if current_user && current_user.admin?
+                    = link_to 'Edit', edit_category_product_path(product.category, product), class: "btn btn-primary"
+                    = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    - else
+      .panel-body
+        There are no products in this category.

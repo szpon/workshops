@@ -14,7 +14,7 @@
       %h3.panel-title.pull-left
         #{product.category.name} > #{product.title} 
       %strong.pull-right
-        $ #{product.price}
+        = number_to_currency(product.price)
 
     .panel-body
       Description:

@@ -2,9 +2,9 @@
   .page-header.clearfix
     .pull-left
       %h2
-        -if user.admin?
-          %span.glyphicon.glyphicon-star
         #{user.firstname} #{user.lastname}
+        - if user.admin?
+          %span.label.label-primary Admin
     .pull-right
       .btn-group
 
@@ -29,8 +29,11 @@
             .media
               .media-body
                 %h4.media-heading
-                  #{review.product.title}
-                  Rating: #{review.rating}
+                  = link_to review.product.title, category_product_path(review.product.category, review.product)
+                  - review.rating.times do
+                    %span.glyphicon.glyphicon-star
+                  - (5 - review.rating).times do
+                    %span.glyphicon.glyphicon-star-empty
                 %em
                   "#{review.content}"
                 \-  #{review.created_at.strftime("%d-%m-%Y")}

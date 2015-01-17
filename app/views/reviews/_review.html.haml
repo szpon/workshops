@@ -2,7 +2,10 @@
   .media
     .media-body
       %h4.media-heading
-        Rating: #{review.rating}
+        - review.rating.times do
+          %span.glyphicon.glyphicon-star
+        - (5 - review.rating).times do
+          %span.glyphicon.glyphicon-star-empty
       %em
         "#{review.content}"
       \-

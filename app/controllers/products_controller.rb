@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_filter :product_owner?, only: [:edit, :update, :destroy]
 
   expose(:category)

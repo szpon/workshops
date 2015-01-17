@@ -1,9 +1,8 @@
 .col-sm-8.col-sm-offset-2
-  .page-header.clearfix
-    .pull-left
-      %h2 New product
+  .page-header
     .pull-right
       .btn-group
         = link_to 'Back', category_products_path, class: 'btn btn-primary'
+    %h2 New product
 
   = render 'form'

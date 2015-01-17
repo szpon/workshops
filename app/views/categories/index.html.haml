@@ -1,11 +1,9 @@
 .col-sm-8.col-sm-offset-2
-  .page-header.clearfix
-    .pull-left
-      %h2 Listing categories
-    
+  .page-header
     - if current_user && current_user.admin?
       .pull-right
         = link_to 'New Category', new_category_path, class: "btn btn-success"
+    %h2 Listing categories
 
   .panel.panel-default
     .panel-heading
@@ -15,12 +13,12 @@
       %thead
         %tr
           %th Name
-          %th Actions
+          %th.text-right Actions
       %tbody
         - categories.each do |category|
           %tr
             %td= category.name
-            %td
+            %td.text-right
               .btn-group
                 = link_to 'Show', category, class: "btn btn-success"
                 - if current_user && current_user.admin?

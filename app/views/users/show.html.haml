@@ -1,12 +1,9 @@
 .col-sm-8.col-sm-offset-2
-  .page-header.clearfix
-    .pull-left
-      %h2
-        #{user.firstname} #{user.lastname}
-        - if user.admin?
-          %span.label.label-primary Admin
-    .pull-right
-      .btn-group
+  .page-header
+    %h2
+      #{user.firstname} #{user.lastname}
+      - if user.admin?
+        %span.label.label-primary Admin
 
   %p
     Email:

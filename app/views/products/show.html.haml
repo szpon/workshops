@@ -1,13 +1,11 @@
 .col-sm-8.col-sm-offset-2
-  .page-header.clearfix
-    .pull-left
-      %h2
-        = product.title
+  .page-header
     .pull-right
       .btn-group
         - if current_user && current_user == product.user
           = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-primary'
         = link_to 'Back', category_products_path, class: 'btn btn-primary'
+    %h2= product.title
 
   .panel.panel-default
     .panel-heading.clearfix

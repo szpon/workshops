@@ -1,12 +1,11 @@
 .col-sm-8.col-sm-offset-2
-  .page-header.clearfix
-    .pull-left
-      %h2= category.name
+  .page-header
     .pull-right
       .btn-group
         - if current_user && current_user.admin?
           = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary'
         = link_to 'Back', categories_path, class: 'btn btn-primary'
+    %h2= category.name
 
   .panel.panel-default
     .panel-heading
@@ -17,12 +16,12 @@
         %thead
           %tr
             %th Name
-            %th Actions
+            %th.text-right Actions
         %tbody
           - category.products.each do |product|
             %tr
               %td= product.title
-              %td
+              %td.text-right
                 .btn-group
                   = link_to 'Show', category_product_path(category, product), class: "btn btn-success"
                   - if current_user && current_user.admin?

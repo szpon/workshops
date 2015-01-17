@@ -1,10 +1,9 @@
 .col-sm-8.col-sm-offset-2
-  .page-header.clearfix
-    .pull-left
-      %h2 Editing category
+  .page-header
     .pull-right
       .btn-group
         = link_to 'Show', category, class: 'btn btn-primary'
         = link_to 'Back', categories_path, class: 'btn btn-primary'
+    %h2 Editing category
 
   = render 'form'

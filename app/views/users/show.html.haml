@@ -24,7 +24,7 @@
         %h3.panel-title Last user's reviews
 
       %ul.list-group
-        - user.reviews.limit(5).order(:created_at).each do |review|
+        - user.reviews.limit(5).order(created_at: :desc).each do |review|
           %li.list-group-item
             .media
               .media-body

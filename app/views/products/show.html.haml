@@ -23,7 +23,8 @@
   - if reviews.any?
     .panel.panel-default
       .panel-heading
-        %h3.panel-title Reviews
+        %h3.panel-title
+          Average rating: #{product.average_rating}
 
       %ul.list-group
         = render reviews

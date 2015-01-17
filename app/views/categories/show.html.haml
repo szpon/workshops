@@ -12,21 +12,25 @@
     .panel-heading
       %h3.panel-title Products
 
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Name
-          %th Actions
-      %tbody
-        - category.products.each do |product|
+    - if category.products.any?
+      %table.table.table-striped
+        %thead
           %tr
-            %td= product.title
-            %td
-              .btn-group
-                = link_to 'Show', category_product_path(category, product), class: "btn btn-success"
-                - if current_user && current_user.admin?
-                  = link_to 'Edit', edit_category_product_path(category, product), class: "btn btn-primary"
-                  = link_to 'Destroy', category_product_path(category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+            %th Name
+            %th Actions
+        %tbody
+          - category.products.each do |product|
+            %tr
+              %td= product.title
+              %td
+                .btn-group
+                  = link_to 'Show', category_product_path(category, product), class: "btn btn-success"
+                  - if current_user && current_user.admin?
+                    = link_to 'Edit', edit_category_product_path(category, product), class: "btn btn-primary"
+                    = link_to 'Destroy', category_product_path(category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    - else
+      .panel-body
+        There are no products in this category.
 
   - if current_user && current_user.admin?
     .panel.panel-default

@@ -11,10 +11,11 @@ class ReviewsController < ApplicationController
 
     if review.save
       product.reviews << review
-      redirect_to category_product_url(product.category, product), notice: 'Review was successfully created.'
+      flash[:notice] = 'Review was successfully created.'
     else
-      render template: 'products/show'
+      flash[:error] = 'Review was not created.'
     end
+    redirect_to category_product_url(product.category, product)
   end
 
   def destroy

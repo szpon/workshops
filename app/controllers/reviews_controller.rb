@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
 
   expose(:review)
   expose(:product)
+  expose(:category)
+  expose_decorated(:reviews, ancestor: :product)
 
   def edit
   end
@@ -11,11 +13,10 @@ class ReviewsController < ApplicationController
 
     if review.save
       product.reviews << review
-      flash[:notice] = 'Review was successfully created.'
+      redirect_to category_product_url(product.category, product), notice: 'Review was successfully created.'
     else
-      flash[:error] = 'Review was not created.'
+      render 'products/show'
     end
-    redirect_to category_product_url(product.category, product)
   end
 
   def destroy

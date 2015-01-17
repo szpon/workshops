@@ -22,7 +22,7 @@
     .panel.panel-default
       .panel-heading
         %h3.panel-title
-          Average rating: #{product.average_rating}
+          Average rating: #{product.average_rating.round(1)}
 
       %ul.list-group
         = render reviews

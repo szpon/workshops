@@ -9,18 +9,22 @@
     .panel-heading
       %h3.panel-title Categories
 
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Name
-          %th.text-right Actions
-      %tbody
-        - categories.each do |category|
+    - if categories.any?
+      %table.table.table-striped
+        %thead
           %tr
-            %td= category.name
-            %td.text-right
-              .btn-group
-                = link_to 'Show', category, class: "btn btn-success"
-                - if current_user && current_user.admin?
-                  = link_to 'Edit', edit_category_path(category), class: "btn btn-primary"
-                  = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+            %th Name
+            %th.text-right Actions
+        %tbody
+          - categories.each do |category|
+            %tr
+              %td= category.name
+              %td.text-right
+                .btn-group
+                  = link_to 'Show', category, class: "btn btn-success"
+                  - if current_user && current_user.admin?
+                    = link_to 'Edit', edit_category_path(category), class: "btn btn-primary"
+                    = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    - else
+      .panel-body
+        There are no categories yet.
